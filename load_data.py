@@ -12,7 +12,7 @@ def remove_range_specification(arff_file):
     new_lines = []
     for line in lines:
         if line.startswith("@attribute"):
-            line = re.sub(r"\[\d+\.\d+, \d+\.\d+\]", "", line)
+            line = re.sub(r"\[.*?\]", "", line)
         new_lines.append(line)
 
     temp = tempfile.NamedTemporaryFile(delete=False)
@@ -36,6 +36,9 @@ def load_files_into_dataframes(file_paths):
             df = pd.DataFrame(
                 data_dict["data"], columns=[i[0] for i in data_dict["attributes"]]
             )
+            if 'Class' not in df.columns:
+                # Rename the specific column
+                df = df.rename(columns={'class': 'Class'})
             dir_dataframes.append(df)
         dataframes[data_dict["relation"]] = dir_dataframes
 

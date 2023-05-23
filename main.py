@@ -10,8 +10,8 @@ from handle_pickle import save_pickle, load_pickle
 
 
 if __name__ == "__main__":
-    reload_data = False
-    perform_sampling = False
+    reload_data = True
+    perform_sampling = True
 
     functions = [
         random_undersampling,
@@ -38,8 +38,12 @@ if __name__ == "__main__":
         for func in functions:
             updated_structure = {}
             for name, dataframes in dfs.items():
-                updated_dataframes = [func(df, "Class") for df in dataframes]
-                updated_structure[name] = updated_dataframes
+                try:
+                    updated_dataframes = [func(df, "Class") for df in dataframes]
+                    updated_structure[name] = updated_dataframes
+                except Exception as err:
+                    print(err)
+                    print(name, func)
             sampled_dfs.append(updated_structure)
         for f_name, data in zip(function_names, sampled_dfs):
             save_pickle(data, os.path.join(df_path, pre_sample + f_name + post_sample))
