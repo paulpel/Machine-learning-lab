@@ -6,17 +6,17 @@ import tempfile
 
 
 def remove_range_specification(arff_file):
-    with open(arff_file, 'r') as f:
+    with open(arff_file, "r") as f:
         lines = f.readlines()
 
     new_lines = []
     for line in lines:
-        if line.startswith('@attribute'):
-            line = re.sub(r'\[\d+\.\d+, \d+\.\d+\]', '', line)
+        if line.startswith("@attribute"):
+            line = re.sub(r"\[\d+\.\d+, \d+\.\d+\]", "", line)
         new_lines.append(line)
 
     temp = tempfile.NamedTemporaryFile(delete=False)
-    with open(temp.name, 'w') as f:
+    with open(temp.name, "w") as f:
         f.writelines(new_lines)
 
     return temp.name
@@ -30,10 +30,12 @@ def load_files_into_dataframes(file_paths):
 
         for path in dir_paths:
             temp_path = remove_range_specification(path)
-            with open(temp_path, 'r') as f:
+            with open(temp_path, "r") as f:
                 data_dict = arff.load(f)
 
-            df = pd.DataFrame(data_dict['data'], columns=[i[0] for i in data_dict['attributes']])
+            df = pd.DataFrame(
+                data_dict["data"], columns=[i[0] for i in data_dict["attributes"]]
+            )
             dir_dataframes.append(df)
         dataframes[data_dict["relation"]] = dir_dataframes
 
@@ -59,9 +61,3 @@ def get_paths():
             dir_file_paths.append(subdir_file_paths)
 
     return dir_file_paths
-
-
-if __name__ == "__main__":
-
-    raw_file_paths = get_paths()
-    dfs = load_files_into_dataframes(raw_file_paths)
