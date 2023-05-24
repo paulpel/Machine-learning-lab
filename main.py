@@ -1,4 +1,5 @@
 import os
+import json
 from load_data import get_paths, load_files_into_dataframes
 from sampling import (
     random_undersampling,
@@ -25,16 +26,18 @@ class MachineLearning:
     def main(self):
         dfs, sampled_dfs = self.load()
         dfs, sampled_dfs = self.prep_data(dfs, sampled_dfs)
-        count = 1
-        # for dataset_name, train_test in dfs.items():
-        #     print(count)
-        #     print(dataset_name)
-        #     res = naive_bayes(train_test[0], train_test[1])
-        #     print(res)
-        #     for i, result in enumerate(res):
-        #         print(f"Fold {i+1} Metrics: {result}")
-        #     count += 1
-        #     print()
+        results_raw = {}
+        for dataset_name, train_test in dfs.items():
+            dict_temp = {
+                "random_forest": random_forest(train_test[0], train_test[1]),
+                "decision_tree": decision_tree(train_test[0], train_test[1]),
+                "naive_bayes": naive_bayes(train_test[0], train_test[1]),
+            }
+            results_raw[dataset_name] = dict_temp
+        self.save_json_results(
+            "raw_data",
+            results_raw
+        )
 
     def prep_data(self, dfs, sampled_dfs):
         new_d = {k: [v[i::2] for i in range(2)] for k, v in dfs.items()}
@@ -44,6 +47,13 @@ class MachineLearning:
             new_sampled.append(temp)
 
         return new_d, new_sampled
+
+    def save_json_results(self, filename, data):
+        result_path = os.path.join(os.getcwd(), "results")
+        path = os.path.join(result_path, filename + ".json")
+
+        with open(path, "w") as json_file:
+            json.dump(data, json_file, indent=4)
 
     def load(self):
         cwd = os.getcwd()
