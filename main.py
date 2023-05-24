@@ -7,6 +7,7 @@ from sampling import (
     perform_adasyn,
 )
 from handle_pickle import save_pickle, load_pickle
+from models import random_forest
 
 
 class MachineLearning:
@@ -24,6 +25,15 @@ class MachineLearning:
     def main(self):
         dfs, sampled_dfs = self.load()
         dfs, sampled_dfs = self.prep_data(dfs, sampled_dfs)
+        count = 1
+        for dataset_name, train_test in dfs.items():
+            print(count)
+            print(dataset_name)
+            res = random_forest(train_test[0], train_test[1])
+            for i, result in enumerate(res):
+                print(f"Fold {i+1} Metrics: {result}")
+            count += 1
+            print()
 
     def prep_data(self, dfs, sampled_dfs):
         new_d = {k: [v[i::2] for i in range(2)] for k, v in dfs.items()}
