@@ -35,7 +35,6 @@ class MachineLearning:
         return new_d, new_sampled
 
     def load(self):
-
         cwd = os.getcwd()
         df_path = os.path.join(cwd, "dataframes")
         data_path = os.path.join(df_path, "data.pkl")
@@ -61,18 +60,21 @@ class MachineLearning:
                         print(name, func)
                 sampled_dfs.append(updated_structure)
             for f_name, data in zip(self.function_names, sampled_dfs):
-                save_pickle(data, os.path.join(df_path, pre_sample + f_name + post_sample))
+                save_pickle(
+                    data, os.path.join(df_path, pre_sample + f_name + post_sample)
+                )
         else:
             sampled_dfs = []
             for f_name in self.function_names:
                 sampled_dfs.append(
-                    load_pickle(os.path.join(df_path, pre_sample + f_name + post_sample))
+                    load_pickle(
+                        os.path.join(df_path, pre_sample + f_name + post_sample)
+                    )
                 )
 
         return dfs, sampled_dfs
 
 
 if __name__ == "__main__":
-
     obj = MachineLearning()
     obj.main()

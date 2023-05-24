@@ -36,9 +36,9 @@ def load_files_into_dataframes(file_paths):
             df = pd.DataFrame(
                 data_dict["data"], columns=[i[0] for i in data_dict["attributes"]]
             )
-            if 'Class' not in df.columns:
+            if "Class" not in df.columns:
                 # Rename the specific column
-                df = df.rename(columns={'class': 'Class'})
+                df = df.rename(columns={"class": "Class"})
             dir_dataframes.append(df)
         dataframes[data_dict["relation"]] = dir_dataframes
 

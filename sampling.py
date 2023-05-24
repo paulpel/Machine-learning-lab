@@ -64,14 +64,18 @@ def perform_smote(df, target_col):
     num_classes = len(set(y))
 
     # Determine the number of neighbors for SMOTE
-    n_neighbors = min(5, num_classes - 1)  # Set the maximum number of neighbors to (num_classes - 1)
+    n_neighbors = min(
+        5, num_classes - 1
+    )  # Set the maximum number of neighbors to (num_classes - 1)
 
     # Apply SMOTE
     smote = SMOTE(random_state=42, k_neighbors=n_neighbors)
     X_resampled, y_resampled = smote.fit_resample(X, y)
 
     # Convert the resampled arrays back to a DataFrame
-    resampled_df = pd.DataFrame(X_resampled, columns=df.drop(target_col, axis=1).columns)
+    resampled_df = pd.DataFrame(
+        X_resampled, columns=df.drop(target_col, axis=1).columns
+    )
     resampled_df[target_col] = y_resampled
 
     return resampled_df
@@ -86,14 +90,18 @@ def perform_adasyn(df, target_col):
     num_classes = len(set(y))
 
     # Determine the number of neighbors for ADASYN
-    n_neighbors = min(5, num_classes - 1)  # Set the maximum number of neighbors to (num_classes - 1)
+    n_neighbors = min(
+        5, num_classes - 1
+    )  # Set the maximum number of neighbors to (num_classes - 1)
 
     # Apply ADASYN
     adasyn = ADASYN(random_state=42, n_neighbors=n_neighbors)
     X_resampled, y_resampled = adasyn.fit_resample(X, y)
 
     # Convert the resampled arrays back to a DataFrame
-    resampled_df = pd.DataFrame(X_resampled, columns=df.drop(target_col, axis=1).columns)
+    resampled_df = pd.DataFrame(
+        X_resampled, columns=df.drop(target_col, axis=1).columns
+    )
     resampled_df[target_col] = y_resampled
 
     return resampled_df
