@@ -5,6 +5,7 @@ from sampling import (
     random_oversampling,
     perform_smote,
     perform_adasyn,
+    perform_enn
 )
 from handle_pickle import save_pickle, load_pickle
 
@@ -12,12 +13,14 @@ from handle_pickle import save_pickle, load_pickle
 class MachineLearning:
     def __init__(self):
         self.reload_data = False
-        self.perform_sampling = False
+        self.perform_sampling = True
         self.functions = [
             random_undersampling,
             random_oversampling,
             perform_smote,
             perform_adasyn,
+            perform_enn
+            
         ]
         self.function_names = [func.__name__ for func in self.functions]
 

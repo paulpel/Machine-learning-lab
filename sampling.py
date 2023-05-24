@@ -134,12 +134,4 @@ def perform_enn(df, target_col):
 
     return resampled_df
 
-# Przykładowe użycie
-df = pd.DataFrame({
-    'feature1': [1, 2, 3, 4, 5, 6],
-    'feature2': [2, 3, 4, 5, 6, 7],
-    'target': [0, 0, 1, 1, 1, 1]
-})
 
-resampled_df = perform_enn(df, 'target')
-print(resampled_df)
