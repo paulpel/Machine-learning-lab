@@ -9,6 +9,7 @@ from sampling import (
 )
 from handle_pickle import save_pickle, load_pickle
 from models import random_forest, decision_tree, naive_bayes
+from umce import create_imbalanced_ensemble
 
 
 class MachineLearning:
@@ -26,18 +27,21 @@ class MachineLearning:
     def main(self):
         dfs, sampled_dfs = self.load()
         dfs, sampled_dfs = self.prep_data(dfs, sampled_dfs)
-        results_raw = {}
         for dataset_name, train_test in dfs.items():
-            dict_temp = {
-                "random_forest": random_forest(train_test[0], train_test[1]),
-                "decision_tree": decision_tree(train_test[0], train_test[1]),
-                "naive_bayes": naive_bayes(train_test[0], train_test[1]),
-            }
-            results_raw[dataset_name] = dict_temp
-        self.save_json_results(
-            "raw_data",
-            results_raw
-        )
+            metrics_rf, metrics_dt, metrics_nb = create_imbalanced_ensemble(train_test[0], train_test[1])
+            break
+        # results_raw = {}
+        # for dataset_name, train_test in dfs.items():
+        #     dict_temp = {
+        #         "random_forest": random_forest(train_test[0], train_test[1]),
+        #         "decision_tree": decision_tree(train_test[0], train_test[1]),
+        #         "naive_bayes": naive_bayes(train_test[0], train_test[1]),
+        #     }
+        #     results_raw[dataset_name] = dict_temp
+        # self.save_json_results(
+        #     "raw_data",
+        #     results_raw
+        # )
 
     def prep_data(self, dfs, sampled_dfs):
         new_d = {k: [v[i::2] for i in range(2)] for k, v in dfs.items()}
