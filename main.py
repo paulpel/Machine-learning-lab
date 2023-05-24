@@ -23,7 +23,16 @@ class MachineLearning:
 
     def main(self):
         dfs, sampled_dfs = self.load()
-        print(dfs)
+        dfs, sampled_dfs = self.prep_data(dfs, sampled_dfs)
+
+    def prep_data(self, dfs, sampled_dfs):
+        new_d = {k: [v[i::2] for i in range(2)] for k, v in dfs.items()}
+        new_sampled = []
+        for item in sampled_dfs:
+            temp = {k: [v[i::2] for i in range(2)] for k, v in item.items()}
+            new_sampled.append(temp)
+
+        return new_d, new_sampled
 
     def load(self):
 
