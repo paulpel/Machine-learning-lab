@@ -1,7 +1,8 @@
 import pandas as pd
 from sklearn.utils import resample
 from imblearn.over_sampling import SMOTE, ADASYN
-
+import numpy as np
+from sklearn.neighbors import NearestNeighbors
 
 def random_undersampling(df, target_col):
     # Calculate class frequencies
@@ -97,3 +98,48 @@ def perform_adasyn(df, target_col):
     resampled_df[target_col] = y_resampled
 
     return resampled_df
+
+def perform_enn(df, target_col):
+    # Separate features and target
+    X = df.drop(target_col, axis=1).values
+    y = df[target_col].values
+
+    # Create an instance of the k-NN classifier
+    knn = NearestNeighbors(n_neighbors=3)  # Set the number of neighbors to consider
+
+    minority_class_label = min(set(y))  # Assuming minority class is the smallest class
+
+    # Filter the minority class samples
+    minority_indices = np.where(y == minority_class_label)[0]
+    minority_samples = X[minority_indices]
+
+    # Fit the k-NN classifier on the minority class samples
+    knn.fit(minority_samples)
+
+    selected_indices = []
+
+    # Iterate over each minority class sample
+    for i, sample in enumerate(minority_samples):
+        # Find the indices of the K nearest neighbors
+        _, indices = knn.kneighbors([sample])
+
+        # Check if the majority class is the most frequent class among the neighbors
+        majority_count = np.sum(y[minority_indices[indices[0]]] != minority_class_label)
+
+        if majority_count < len(indices[0]) / 2:
+            selected_indices.append(minority_indices[i])
+
+    # Filter the dataset based on the selected indices
+    resampled_df = df.iloc[selected_indices]
+
+    return resampled_df
+
+# Przykładowe użycie
+df = pd.DataFrame({
+    'feature1': [1, 2, 3, 4, 5, 6],
+    'feature2': [2, 3, 4, 5, 6, 7],
+    'target': [0, 0, 1, 1, 1, 1]
+})
+
+resampled_df = perform_enn(df, 'target')
+print(resampled_df)
