@@ -28,7 +28,9 @@ class MachineLearning:
         dfs, sampled_dfs = self.load()
         dfs, sampled_dfs = self.prep_data(dfs, sampled_dfs)
         for dataset_name, train_test in dfs.items():
-            metrics_rf, metrics_dt, metrics_nb = create_imbalanced_ensemble(train_test[0], train_test[1])
+            metrics_rf, metrics_dt, metrics_nb = create_imbalanced_ensemble(
+                train_test[0], train_test[1]
+            )
             break
         # results_raw = {}
         # for dataset_name, train_test in dfs.items():

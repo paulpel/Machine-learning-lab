@@ -5,7 +5,15 @@ from sklearn.naive_bayes import GaussianNB
 import numpy as np
 import pandas as pd
 
-from sklearn.metrics import accuracy_score, balanced_accuracy_score, precision_score, recall_score, f1_score, roc_auc_score, confusion_matrix
+from sklearn.metrics import (
+    accuracy_score,
+    balanced_accuracy_score,
+    precision_score,
+    recall_score,
+    f1_score,
+    roc_auc_score,
+    confusion_matrix,
+)
 
 
 def create_imbalanced_ensemble(train_dfs, test_dfs):
@@ -18,13 +26,13 @@ def create_imbalanced_ensemble(train_dfs, test_dfs):
 
     for train_df, test_df in zip(train_dfs, test_dfs):
         # Step 1: Identify the minority and majority classes
-        class_counts = train_df['Class'].value_counts()
+        class_counts = train_df["Class"].value_counts()
         minority_label = class_counts.idxmin()
         majority_label = class_counts.idxmax()
 
         # Step 2: Divide the dataset into subsets of the minority class (M_inC) and the majority class (M_ajC)
-        minority_samples = train_df[train_df['Class'] == minority_label]
-        majority_samples = train_df[train_df['Class'] == majority_label]
+        minority_samples = train_df[train_df["Class"] == minority_label]
+        majority_samples = train_df[train_df["Class"] == majority_label]
 
         # Step 3: Calculate the imbalanced ratio (IR)
         imbalance_ratio = len(majority_samples) / len(minority_samples)
@@ -33,7 +41,9 @@ def create_imbalanced_ensemble(train_dfs, test_dfs):
         k = round(imbalance_ratio)
 
         # Step 5: Perform a shuffled k-fold division of M_ajC
-        shuffled_majority_samples = majority_samples.sample(frac=1, random_state=42)  # Shuffle the majority samples
+        shuffled_majority_samples = majority_samples.sample(
+            frac=1, random_state=42
+        )  # Shuffle the majority samples
         majority_subsets = np.array_split(shuffled_majority_samples, k)
 
         # Step 6: For each i in the range from 1 to k
@@ -42,8 +52,8 @@ def create_imbalanced_ensemble(train_dfs, test_dfs):
             training_set = pd.concat([majority_subsets[i], minority_samples])
 
             # Step 8: Train classifiers on the training set TSi and add them to the ensembles
-            X_train = training_set.drop('Class', axis=1).values
-            y_train = training_set['Class'].values
+            X_train = training_set.drop("Class", axis=1).values
+            y_train = training_set["Class"].values
 
             rf_classifier = RandomForestClassifier()  # Random Forest classifier
             rf_classifier.fit(X_train, y_train)
@@ -72,7 +82,7 @@ def create_imbalanced_ensemble(train_dfs, test_dfs):
 
 def calculate_metrics(y_true, y_pred):
     # Map string labels to numeric values
-    label_map = {'negative': 0, 'positive': 1}
+    label_map = {"negative": 0, "positive": 1}
     y_true_numeric = [label_map[label] for label in y_true]
     y_pred_numeric = [label_map[label] for label in y_pred]
 
@@ -93,4 +103,3 @@ def calculate_metrics(y_true, y_pred):
         "classification_error": classification_error,
         "auc_roc": auc_roc,
     }
-
