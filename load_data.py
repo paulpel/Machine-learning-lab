@@ -6,6 +6,14 @@ import tempfile
 
 
 def remove_range_specification(arff_file):
+    """
+    Removes range specifications in an arff file.
+
+    :param arff_file: str
+        Path to the arff file.
+    :return: str
+        Path to the temporary file created.
+    """
     with open(arff_file, "r") as f:
         lines = f.readlines()
 
@@ -23,6 +31,14 @@ def remove_range_specification(arff_file):
 
 
 def load_files_into_dataframes(file_paths):
+    """
+    Load arff files into pandas DataFrames.
+
+    :param file_paths: list
+        List of file paths to the arff files.
+    :return: dict
+        Dictionary where keys are relation names and values are lists of dataframes.
+    """
     dataframes = {}
 
     for dir_paths in file_paths:
@@ -46,6 +62,12 @@ def load_files_into_dataframes(file_paths):
 
 
 def get_paths():
+    """
+    Get the paths to all arff files in the data_raw directory.
+
+    :return: list
+        List of lists, where each sublist is a list of file paths in a subdirectory.
+    """
     main_raw_path = os.path.join(os.getcwd(), "data_raw")
 
     dir_file_paths = []

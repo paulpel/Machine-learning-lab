@@ -3,6 +3,14 @@ import pandas as pd
 
 
 def load_data(file_path):
+    """
+    Load data from a json file and flatten it to a pandas DataFrame.
+
+    :param file_path: str
+        Path to the json file.
+    :return: pandas.DataFrame
+        DataFrame containing the loaded data.
+    """
     # load your data from a json file
     with open(file_path, "r") as f:
         data = json.load(f)

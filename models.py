@@ -13,6 +13,18 @@ from sklearn.preprocessing import StandardScaler
 
 
 def random_forest(train_dfs, test_dfs, target_column="Class"):
+    """
+    Train and evaluate a Random Forest model on multiple datasets.
+
+    :param train_dfs: list of DataFrame
+        The list of training datasets.
+    :param test_dfs: list of DataFrame
+        The list of testing datasets.
+    :param target_column: str, optional
+        The name of the target column (default is "Class").
+    :return: list of dict
+        The list of evaluation metrics for each dataset.
+    """
     # Separate the features and the targets
     X_train_dfs = [df.drop(target_column, axis=1) for df in train_dfs]
     y_train_dfs = [
@@ -69,6 +81,18 @@ def random_forest(train_dfs, test_dfs, target_column="Class"):
 
 
 def decision_tree(train_dfs, test_dfs, target_column="Class"):
+    """
+    Train and evaluate a Decision Tree model on multiple datasets.
+
+    :param train_dfs: list of DataFrame
+        The list of training datasets.
+    :param test_dfs: list of DataFrame
+        The list of testing datasets.
+    :param target_column: str, optional
+        The name of the target column (default is "Class").
+    :return: list of dict
+        The list of evaluation metrics for each dataset.
+    """
     # Separate the features and the targets
     X_train_dfs = [df.drop(target_column, axis=1) for df in train_dfs]
     y_train_dfs = [
@@ -121,6 +145,18 @@ def decision_tree(train_dfs, test_dfs, target_column="Class"):
 
 
 def naive_bayes(train_dfs, test_dfs, target_column="Class"):
+    """
+    Train and evaluate a Naive Bayes model on multiple datasets.
+
+    :param train_dfs: list of DataFrame
+        The list of training datasets.
+    :param test_dfs: list of DataFrame
+        The list of testing datasets.
+    :param target_column: str, optional
+        The name of the target column (default is "Class").
+    :return: list of dict
+        The list of evaluation metrics for each dataset.
+    """
     # Separate the features and the targets
     X_train_dfs = [df.drop(target_column, axis=1) for df in train_dfs]
     y_train_dfs = [

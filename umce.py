@@ -17,6 +17,16 @@ from sklearn.metrics import (
 
 
 def create_imbalanced_ensemble(train_dfs, test_dfs):
+    """
+    Create imbalanced ensembles of Random Forest, Decision Tree, and Naive Bayes classifiers.
+
+    :param train_dfs: list of DataFrame
+        The list of training datasets.
+    :param test_dfs: list of DataFrame
+        The list of test datasets.
+    :return: tuple of lists
+        The lists of metrics for each ensemble.
+    """
     rf_ensemble = []
     dt_ensemble = []
     nb_ensemble = []
@@ -81,6 +91,16 @@ def create_imbalanced_ensemble(train_dfs, test_dfs):
 
 
 def calculate_metrics(y_true, y_pred):
+    """
+    Calculate various metrics to evaluate the performance of a classifier.
+
+    :param y_true: list
+        The list of true labels.
+    :param y_pred: list
+        The list of predicted labels.
+    :return: dict
+        The calculated metrics.
+    """
     # Map string labels to numeric values
     label_map = {"negative": 0, "positive": 1}
     y_true_numeric = [label_map[label] for label in y_true]

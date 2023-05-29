@@ -4,6 +4,16 @@ from imblearn.over_sampling import SMOTE, ADASYN
 
 
 def random_undersampling(df, target_col):
+    """
+    Perform random undersampling to balance the classes.
+
+    :param df: DataFrame
+        The input dataframe with imbalanced classes.
+    :param target_col: str
+        The name of the target column (class labels).
+    :return: DataFrame
+        The resulting dataframe after undersampling.
+    """
     # Calculate class frequencies
     class_frequencies = df[target_col].value_counts()
 
@@ -30,6 +40,16 @@ def random_undersampling(df, target_col):
 
 
 def random_oversampling(df, target_col):
+    """
+    Perform random oversampling to balance the classes.
+
+    :param df: DataFrame
+        The input dataframe with imbalanced classes.
+    :param target_col: str
+        The name of the target column (class labels).
+    :return: DataFrame
+        The resulting dataframe after oversampling.
+    """
     # Calculate class frequencies
     class_frequencies = df[target_col].value_counts()
 
@@ -56,6 +76,16 @@ def random_oversampling(df, target_col):
 
 
 def perform_smote(df, target_col):
+    """
+    Perform Synthetic Minority Over-sampling Technique (SMOTE) to balance the classes.
+
+    :param df: DataFrame
+        The input dataframe with imbalanced classes.
+    :param target_col: str
+        The name of the target column (class labels).
+    :return: DataFrame
+        The resulting dataframe after applying SMOTE.
+    """
     # Separate features and target
     X = df.drop(target_col, axis=1).values
     y = df[target_col].values
@@ -82,6 +112,16 @@ def perform_smote(df, target_col):
 
 
 def perform_adasyn(df, target_col):
+    """
+    Perform Adaptive Synthetic (ADASYN) sampling approach to balance the classes.
+
+    :param df: DataFrame
+        The input dataframe with imbalanced classes.
+    :param target_col: str
+        The name of the target column (class labels).
+    :return: DataFrame
+        The resulting dataframe after applying ADASYN.
+    """
     # Separate features and target
     X = df.drop(target_col, axis=1).values
     y = df[target_col].values

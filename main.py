@@ -13,6 +13,15 @@ from umce import create_imbalanced_ensemble
 
 
 class MachineLearning:
+    """
+    Class for running Machine Learning experiments.
+
+    :param reload_data: bool, optional
+        Whether to reload data from the source files (default is False).
+    :param perform_sampling: bool, optional
+        Whether to perform sampling on the datasets (default is False).
+    """
+
     def __init__(self):
         self.reload_data = False
         self.perform_sampling = False
@@ -25,6 +34,9 @@ class MachineLearning:
         self.function_names = [func.__name__ for func in self.functions]
 
     def main(self):
+        """
+        Main function to run the machine learning experiments.
+        """
         dfs, sampled_dfs = self.load()
         dfs, sampled_dfs = self.prep_data(dfs, sampled_dfs)
         for dataset_name, train_test in dfs.items():
@@ -46,6 +58,16 @@ class MachineLearning:
         # )
 
     def prep_data(self, dfs, sampled_dfs):
+        """
+        Prepare the datasets for the machine learning experiments.
+
+        :param dfs: dict
+            Dictionary containing the raw datasets.
+        :param sampled_dfs: list
+            List of dictionaries containing the sampled datasets.
+        :return: tuple
+            Tuple containing the prepared raw and sampled datasets.
+        """
         new_d = {k: [v[i::2] for i in range(2)] for k, v in dfs.items()}
         new_sampled = []
         for item in sampled_dfs:
@@ -55,6 +77,14 @@ class MachineLearning:
         return new_d, new_sampled
 
     def save_json_results(self, filename, data):
+        """
+        Save the results of the experiments as a JSON file.
+
+        :param filename: str
+            The name of the JSON file.
+        :param data: dict
+            The results data to be saved.
+        """
         result_path = os.path.join(os.getcwd(), "results")
         path = os.path.join(result_path, filename + ".json")
 
@@ -62,6 +92,12 @@ class MachineLearning:
             json.dump(data, json_file, indent=4)
 
     def load(self):
+        """
+        Load raw and sampled datasets.
+
+        :return: tuple
+            Tuple containing raw and sampled datasets.
+        """
         cwd = os.getcwd()
         df_path = os.path.join(cwd, "dataframes")
         data_path = os.path.join(df_path, "data.pkl")
