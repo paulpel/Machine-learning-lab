@@ -25,6 +25,9 @@ class MachineLearning:
     def __init__(self):
         self.reload_data = False
         self.perform_sampling = False
+        self.umce = False
+        self.raw = False
+        self.sampled = True
         self.functions = [
             random_undersampling,
             random_oversampling,
@@ -39,23 +42,56 @@ class MachineLearning:
         """
         dfs, sampled_dfs = self.load()
         dfs, sampled_dfs = self.prep_data(dfs, sampled_dfs)
-        for dataset_name, train_test in dfs.items():
-            metrics_rf, metrics_dt, metrics_nb = create_imbalanced_ensemble(
-                train_test[0], train_test[1]
-            )
-            break
-        # results_raw = {}
-        # for dataset_name, train_test in dfs.items():
-        #     dict_temp = {
-        #         "random_forest": random_forest(train_test[0], train_test[1]),
-        #         "decision_tree": decision_tree(train_test[0], train_test[1]),
-        #         "naive_bayes": naive_bayes(train_test[0], train_test[1]),
-        #     }
-        #     results_raw[dataset_name] = dict_temp
-        # self.save_json_results(
-        #     "raw_data",
-        #     results_raw
-        # )
+
+        # umce
+        if self.umce:
+            results_umce = {}
+            for dataset_name, train_test in dfs.items():
+                metrics_rf, metrics_dt, metrics_nb = create_imbalanced_ensemble(
+                    train_test[0], train_test[1]
+                )
+                dict_temp = {
+                    "random_forest": metrics_rf,
+                    "decision_tree": metrics_dt,
+                    "naive_bayes": metrics_nb,
+                }
+                results_umce[dataset_name] = dict_temp
+                self.save_json_results("umce", results_umce)
+
+        # raw data
+        if self.raw:
+            results_raw = {}
+            for dataset_name, train_test in dfs.items():
+                dict_temp = {
+                    "random_forest": random_forest(train_test[0], train_test[1]),
+                    "decision_tree": decision_tree(train_test[0], train_test[1]),
+                    "naive_bayes": naive_bayes(train_test[0], train_test[1]),
+                }
+                results_raw[dataset_name] = dict_temp
+            self.save_json_results("raw_data", results_raw)
+
+        # sampled [{dataset1: [[train_dfs], [test_dfs]]}, {}, {}, {}]
+        if self.sampled:
+            results = {
+                "random_undersampling": {},
+                "random_oversampling": {},
+                "perform_smote": {},
+                "perform_adasyn": {},
+            }
+
+            for sampling_method, data in zip(self.function_names, sampled_dfs):
+                print(sampling_method)
+                for dataset, values in data.items():
+                    train_dfs = values[0]
+                    test_dfs = values[1]
+                    dict_temp = {
+                        "random_forest": random_forest(train_dfs, test_dfs),
+                        "decision_tree": decision_tree(train_dfs, test_dfs),
+                        "naive_bayes": naive_bayes(train_dfs, test_dfs),
+                    }
+                    results[sampling_method][dataset] = dict_temp
+            for method, result in results.items():
+                self.save_json_results(f"{method}.json", result)
 
     def prep_data(self, dfs, sampled_dfs):
         """
