@@ -1,0 +1,350 @@
+{
+    "ecoli-0-1-4-7_vs_5-6": {
+        "random_forest": {
+            "accuracy": 0.9137493389740877,
+            "balanced_accuracy": 0.9137493389740878,
+            "precision": 0.9922287390029325,
+            "recall": 0.834056054997356,
+            "f1_score": 0.9033618540374423,
+            "classification_error": 0.08625066102591221,
+            "auc_roc": 0.9137493389740878
+        },
+        "decision_tree": {
+            "accuracy": 0.8843469063987308,
+            "balanced_accuracy": 0.8843469063987308,
+            "precision": 0.950959267702118,
+            "recall": 0.8079323109465891,
+            "f1_score": 0.860554047501027,
+            "classification_error": 0.11565309360126919,
+            "auc_roc": 0.8843469063987308
+        },
+        "naive_bayes": {
+            "accuracy": 0.905499735589635,
+            "balanced_accuracy": 0.9054997355896353,
+            "precision": 0.9478883357541982,
+            "recall": 0.8599682707562136,
+            "f1_score": 0.8936617157139535,
+            "classification_error": 0.09450026441036492,
+            "auc_roc": 0.9054997355896353
+        }
+    },
+    "ecoli-0-3-4-7_vs_5-6": {
+        "random_forest": {
+            "accuracy": 0.9056891766882516,
+            "balanced_accuracy": 0.9056891766882516,
+            "precision": 0.9783533765032377,
+            "recall": 0.8285846438482887,
+            "f1_score": 0.8827643090896947,
+            "classification_error": 0.09431082331174838,
+            "auc_roc": 0.9056891766882517
+        },
+        "decision_tree": {
+            "accuracy": 0.8194264569842739,
+            "balanced_accuracy": 0.8194264569842739,
+            "precision": 0.9372469374597034,
+            "recall": 0.6907493061979648,
+            "f1_score": 0.7598302045085376,
+            "classification_error": 0.1805735430157262,
+            "auc_roc": 0.8194264569842739
+        },
+        "naive_bayes": {
+            "accuracy": 0.7458371877890843,
+            "balanced_accuracy": 0.7458371877890843,
+            "precision": 0.696883874990258,
+            "recall": 0.9702127659574469,
+            "f1_score": 0.8017064716525114,
+            "classification_error": 0.2541628122109158,
+            "auc_roc": 0.7458371877890843
+        }
+    },
+    "ecoli1": {
+        "random_forest": {
+            "accuracy": 0.9112368024132731,
+            "balanced_accuracy": 0.9112368024132731,
+            "precision": 0.9170009799650144,
+            "recall": 0.9037707390648567,
+            "f1_score": 0.9078632003164714,
+            "classification_error": 0.08876319758672702,
+            "auc_roc": 0.9112368024132731
+        },
+        "decision_tree": {
+            "accuracy": 0.8300150829562594,
+            "balanced_accuracy": 0.8300150829562594,
+            "precision": 0.8841316438250495,
+            "recall": 0.760708898944193,
+            "f1_score": 0.815864133191581,
+            "classification_error": 0.16998491704374058,
+            "auc_roc": 0.8300150829562595
+        },
+        "naive_bayes": {
+            "accuracy": 0.7142156862745097,
+            "balanced_accuracy": 0.7142156862745097,
+            "precision": 0.6570588002215592,
+            "recall": 0.9730769230769232,
+            "f1_score": 0.779010472943826,
+            "classification_error": 0.28578431372549024,
+            "auc_roc": 0.7142156862745097
+        }
+    },
+    "ecoli2": {
+        "random_forest": {
+            "accuracy": 0.9313283208020049,
+            "balanced_accuracy": 0.9313283208020049,
+            "precision": 0.9767063668039278,
+            "recall": 0.8837719298245614,
+            "f1_score": 0.9250356946919693,
+            "classification_error": 0.06867167919799502,
+            "auc_roc": 0.9313283208020049
+        },
+        "decision_tree": {
+            "accuracy": 0.9102443609022556,
+            "balanced_accuracy": 0.9102443609022556,
+            "precision": 0.9507922355048581,
+            "recall": 0.8661654135338346,
+            "f1_score": 0.9031548823376218,
+            "classification_error": 0.08975563909774438,
+            "auc_roc": 0.9102443609022556
+        },
+        "naive_bayes": {
+            "accuracy": 0.625125313283208,
+            "balanced_accuracy": 0.625125313283208,
+            "precision": 0.574245513096158,
+            "recall": 1.0,
+            "f1_score": 0.7287577142828027,
+            "classification_error": 0.374874686716792,
+            "auc_roc": 0.6251253132832082
+        }
+    },
+    "ecoli3": {
+        "random_forest": {
+            "accuracy": 0.8340710382513661,
+            "balanced_accuracy": 0.8340710382513661,
+            "precision": 0.9211681801907365,
+            "recall": 0.7312021857923497,
+            "f1_score": 0.8106138398274704,
+            "classification_error": 0.1659289617486339,
+            "auc_roc": 0.8340710382513661
+        },
+        "decision_tree": {
+            "accuracy": 0.7606010928961748,
+            "balanced_accuracy": 0.7606010928961748,
+            "precision": 0.8750959637658546,
+            "recall": 0.6008196721311476,
+            "f1_score": 0.6850995781039079,
+            "classification_error": 0.2393989071038251,
+            "auc_roc": 0.7606010928961748
+        },
+        "naive_bayes": {
+            "accuracy": 0.855464480874317,
+            "balanced_accuracy": 0.855464480874317,
+            "precision": 0.793654056407288,
+            "recall": 0.96,
+            "f1_score": 0.8679485561907818,
+            "classification_error": 0.14453551912568305,
+            "auc_roc": 0.855464480874317
+        }
+    },
+    "glass2": {
+        "random_forest": {
+            "accuracy": 0.6169871794871795,
+            "balanced_accuracy": 0.6169871794871795,
+            "precision": 0.6866666666666668,
+            "recall": 0.28525641025641024,
+            "f1_score": 0.40185128117331503,
+            "classification_error": 0.38301282051282054,
+            "auc_roc": 0.6169871794871795
+        },
+        "decision_tree": {
+            "accuracy": 0.655448717948718,
+            "balanced_accuracy": 0.655448717948718,
+            "precision": 0.8075434627292213,
+            "recall": 0.3871794871794872,
+            "f1_score": 0.511969612359812,
+            "classification_error": 0.34455128205128205,
+            "auc_roc": 0.655448717948718
+        },
+        "naive_bayes": {
+            "accuracy": 0.6235897435897437,
+            "balanced_accuracy": 0.6235897435897437,
+            "precision": 0.5719909630982152,
+            "recall": 0.8312820512820511,
+            "f1_score": 0.6750660605112909,
+            "classification_error": 0.3764102564102564,
+            "auc_roc": 0.6235897435897437
+        }
+    },
+    "yeast-0-2-5-7-9_vs_3-6-8": {
+        "random_forest": {
+            "accuracy": 0.9160220994475138,
+            "balanced_accuracy": 0.9160220994475138,
+            "precision": 0.9795286433821533,
+            "recall": 0.8497237569060774,
+            "f1_score": 0.9091089498443307,
+            "classification_error": 0.08397790055248618,
+            "auc_roc": 0.9160220994475138
+        },
+        "decision_tree": {
+            "accuracy": 0.9138121546961326,
+            "balanced_accuracy": 0.9138121546961326,
+            "precision": 0.9668554381685428,
+            "recall": 0.8574585635359115,
+            "f1_score": 0.9064532957503527,
+            "classification_error": 0.08618784530386743,
+            "auc_roc": 0.9138121546961328
+        },
+        "naive_bayes": {
+            "accuracy": 0.5298342541436464,
+            "balanced_accuracy": 0.5298342541436464,
+            "precision": 0.5155549644597437,
+            "recall": 0.994475138121547,
+            "f1_score": 0.6790294773217853,
+            "classification_error": 0.4701657458563536,
+            "auc_roc": 0.5298342541436464
+        }
+    },
+    "yeast-0-3-5-9_vs_7-8": {
+        "random_forest": {
+            "accuracy": 0.7302078356426183,
+            "balanced_accuracy": 0.7302078356426183,
+            "precision": 0.9259633900582177,
+            "recall": 0.5020783564261825,
+            "f1_score": 0.6416728842074464,
+            "classification_error": 0.26979216435738174,
+            "auc_roc": 0.7302078356426183
+        },
+        "decision_tree": {
+            "accuracy": 0.6896082178690874,
+            "balanced_accuracy": 0.6896082178690874,
+            "precision": 0.8251417746145826,
+            "recall": 0.47575250836120403,
+            "f1_score": 0.5979929063534158,
+            "classification_error": 0.31039178213091256,
+            "auc_roc": 0.6896082178690873
+        },
+        "naive_bayes": {
+            "accuracy": 0.5625418060200669,
+            "balanced_accuracy": 0.5625418060200669,
+            "precision": 0.5335348917208662,
+            "recall": 0.9956521739130434,
+            "f1_score": 0.6947626776792347,
+            "classification_error": 0.4374581939799331,
+            "auc_roc": 0.5625418060200669
+        }
+    },
+    "yeast-0-5-6-7-9_vs_4": {
+        "random_forest": {
+            "accuracy": 0.7418530701754386,
+            "balanced_accuracy": 0.7418530701754386,
+            "precision": 0.9304482135571487,
+            "recall": 0.5276535087719298,
+            "f1_score": 0.6602801381013157,
+            "classification_error": 0.25814692982456144,
+            "auc_roc": 0.7418530701754387
+        },
+        "decision_tree": {
+            "accuracy": 0.7399013157894737,
+            "balanced_accuracy": 0.7399013157894737,
+            "precision": 0.862016694227892,
+            "recall": 0.5677192982456141,
+            "f1_score": 0.6752523489411887,
+            "classification_error": 0.2600986842105263,
+            "auc_roc": 0.7399013157894736
+        },
+        "naive_bayes": {
+            "accuracy": 0.49586622807017544,
+            "balanced_accuracy": 0.49586622807017544,
+            "precision": 0.4973818377781554,
+            "recall": 0.9476754385964913,
+            "f1_score": 0.6520456408105257,
+            "classification_error": 0.5041337719298247,
+            "auc_roc": 0.49586622807017544
+        }
+    },
+    "yeast4": {
+        "random_forest": {
+            "accuracy": 0.6570624497453765,
+            "balanced_accuracy": 0.6570624497453765,
+            "precision": 0.9723024023473317,
+            "recall": 0.3259935186764455,
+            "f1_score": 0.4562182270913312,
+            "classification_error": 0.3429375502546234,
+            "auc_roc": 0.6570624497453765
+        },
+        "decision_tree": {
+            "accuracy": 0.6678455690650813,
+            "balanced_accuracy": 0.6678455690650813,
+            "precision": 0.9024462054686943,
+            "recall": 0.37267366779561895,
+            "f1_score": 0.5122628644725897,
+            "classification_error": 0.33215443093491875,
+            "auc_roc": 0.6678455690650812
+        },
+        "naive_bayes": {
+            "accuracy": 0.5505774713091787,
+            "balanced_accuracy": 0.5505774713091787,
+            "precision": 0.5274392435275492,
+            "recall": 0.9727272727272727,
+            "f1_score": 0.6838764469528019,
+            "classification_error": 0.4494225286908214,
+            "auc_roc": 0.5505774713091786
+        }
+    },
+    "yeast5": {
+        "random_forest": {
+            "accuracy": 0.9364583333333334,
+            "balanced_accuracy": 0.9364583333333334,
+            "precision": 0.9888243634333825,
+            "recall": 0.8833333333333334,
+            "f1_score": 0.9298464361307455,
+            "classification_error": 0.06354166666666665,
+            "auc_roc": 0.9364583333333334
+        },
+        "decision_tree": {
+            "accuracy": 0.9010416666666666,
+            "balanced_accuracy": 0.9010416666666666,
+            "precision": 0.986591479644981,
+            "recall": 0.8131944444444444,
+            "f1_score": 0.8885606862948696,
+            "classification_error": 0.09895833333333333,
+            "auc_roc": 0.9010416666666666
+        },
+        "naive_bayes": {
+            "accuracy": 0.8069444444444445,
+            "balanced_accuracy": 0.8069444444444445,
+            "precision": 0.7250829624528254,
+            "recall": 1.0,
+            "f1_score": 0.8396038434245432,
+            "classification_error": 0.19305555555555556,
+            "auc_roc": 0.8069444444444445
+        }
+    },
+    "yeast6": {
+        "random_forest": {
+            "accuracy": 0.8546760529769717,
+            "balanced_accuracy": 0.8546760529769717,
+            "precision": 0.9861893144610535,
+            "recall": 0.7197017062403056,
+            "f1_score": 0.8199049767064827,
+            "classification_error": 0.14532394702302825,
+            "auc_roc": 0.8546760529769717
+        },
+        "decision_tree": {
+            "accuracy": 0.847085073380265,
+            "balanced_accuracy": 0.847085073380265,
+            "precision": 0.9720317987458396,
+            "recall": 0.7134924233385037,
+            "f1_score": 0.8135930208504367,
+            "classification_error": 0.1529149266197351,
+            "auc_roc": 0.847085073380265
+        },
+        "naive_bayes": {
+            "accuracy": 0.6535389571650161,
+            "balanced_accuracy": 0.6535389571650161,
+            "precision": 0.5915661051193746,
+            "recall": 1.0,
+            "f1_score": 0.7431118427369491,
+            "classification_error": 0.3464610428349839,
+            "auc_roc": 0.6535389571650161
+        }
+    }
+}
