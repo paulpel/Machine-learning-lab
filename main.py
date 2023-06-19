@@ -91,7 +91,7 @@ class MachineLearning:
                     }
                     results[sampling_method][dataset] = dict_temp
             for method, result in results.items():
-                self.save_json_results(f"{method}.json", result)
+                self.save_json_results(f"{method}", result)
 
     def prep_data(self, dfs, sampled_dfs):
         """
