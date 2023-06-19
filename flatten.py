@@ -34,24 +34,26 @@ def load_data(directory):
         for dataset, models in data.items():
             for model, metrics in models.items():
                 for metric, value in metrics.items():
-                    row = {
-                        "dataset": dataset,
-                        "model": model,
-                        "metric": metric,
-                        "value": value,
-                        "method": method  # Added method attribute
-                    }
-                    rows.append(row)
+                    # Check if the metric is one of the ones we're interested in
+                    if metric in {"f1_score", "balanced_accuracy", "auc_roc"}:
+                        row = {
+                            "dataset": dataset,
+                            "model": model,
+                            "metric": metric,
+                            "value": value,
+                            "method": method  # Added method attribute
+                        }
+                        rows.append(row)
 
         # Convert the data for this file into a DataFrame and add it to the list
         all_data.append(pd.DataFrame(rows))
 
     # Concatenate all data into a single DataFrame
     df = pd.concat(all_data, ignore_index=True)
-    print(df)
     return df
 
+
 if __name__ == "__main__":
-    
-    dir_path = os.path.join(os.getcwd(), 'results')
-    load_data(dir_path)
+    df = load_data(os.path.join(os.getcwd(), 'results'))
+    df.to_excel("flatten.xlsx", index=False)
+    print(df)
