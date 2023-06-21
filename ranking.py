@@ -1,5 +1,6 @@
 import json
 import glob
+import pandas as pd
 
 # List of JSON files
 json_files = glob.glob('results/average_*.json')
@@ -35,11 +36,16 @@ for json_file in json_files:
 
         ranking_results[dataset_name].append((json_filename, ranking))
 
+df = pd.DataFrame(columns=['Dataset', 'Method', 'Classifier', 'Score'])
+
 # Display ranking test results for each dataset
 for dataset_name, rankings in ranking_results.items():
-    print(f"Dataset: {dataset_name}")
     for i, (json_filename, ranking) in enumerate(rankings):
-        print(f"Ranking {i + 1} (JSON: {json_filename}):")
         for classifier, score in ranking:
-            print(f"{classifier}: {score}")
-        print("--------------------")
+            temp_df = pd.DataFrame({'Dataset': dataset_name, 'Method': json_filename.split("_")[-1], 'Classifier': classifier, 'Score': score}, index=[0])
+            df = pd.concat([df, temp_df], ignore_index=True)
+
+# Print the resulting DataFrame
+print(df)
+df.to_excel('ranking_results.xlsx', index=False)
+
