@@ -1,6 +1,9 @@
 import json
 import pandas as pd
 import os
+import statsmodels.api as sm
+import statsmodels.formula.api as smf
+from statsmodels.stats.multicomp import pairwise_tukeyhsd
 
 
 def load_data(directory):
@@ -52,8 +55,23 @@ def load_data(directory):
     df = pd.concat(all_data, ignore_index=True)
     return df
 
-
 if __name__ == "__main__":
     df = load_data(os.path.join(os.getcwd(), 'results'))
     df.to_excel("flatten.xlsx", index=False)
-    print(df)
+
+    df = df[df['metric'] == 'balanced_accuracy']
+
+    # Perform one-way ANOVA
+    formula = 'value ~ C(model) + C(method) + C(model):C(method)'
+    model = smf.ols(formula, data=df).fit()
+    anova_table = sm.stats.anova_lm(model, typ=2)
+    print(anova_table)
+
+    # Perform Tukey's HSD test
+    tukey_result = pairwise_tukeyhsd(df['value'], df['model'] + df['method'])
+    print(tukey_result)
+
+    # Export ANOVA table and Tukey's HSD test results to separate files
+    anova_table.to_excel("anova_results.xlsx", index=False)
+    tukey_result_frame = pd.DataFrame(data=tukey_result._results_table.data[1:], columns=tukey_result._results_table.data[0])
+    tukey_result_frame.to_csv("tukey_results.csv", index=False)
